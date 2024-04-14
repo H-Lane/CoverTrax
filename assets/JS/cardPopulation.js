@@ -71,7 +71,7 @@ function populateCoverCards(data) {
   }
 }
 
-populateLyrics(data){ //populate lyrics onto their HTML container
+function populateLyrics(data){ //populate lyrics onto their HTML container
   const otLyricsEl = document.createElement(`p`);
   otLyricsEl.textContent = data.message.body.lyrics.lyrics_body;
   otLyricsContainer.appendChild(otLyricsEl);

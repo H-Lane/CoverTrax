@@ -20,7 +20,7 @@ function getTokens(songName){
         return response.json();
     })
     .then(function(data){
-        console.log(data);
+        // console.log(data);
 
         //data is the spotify api key
         //song name is the song name input from the user
@@ -35,10 +35,10 @@ function getSong(tokens, songName){
     
     //turn user text input into an array and replace spaces with underscores
     let name = songName.split(' ');
-    console.log(name);
+    // console.log(name);
     let newName = '';
     for(let i =0;i<name.length;i++){
-        console.log(name[i]);
+        // console.log(name[i]);
         if(i === 0){
             newName = name[i] + '_';
         }
@@ -48,7 +48,7 @@ function getSong(tokens, songName){
             newName = newName  + name[i] +'_';
         }
     }
-    console.log(newName);
+    // console.log(newName);
 
     //combie url components to make api query for specific song
     let start = 'https://api.spotify.com/v1/search?q=';
@@ -69,7 +69,8 @@ function getSong(tokens, songName){
         return response.json();
         })
         .then(function(data){
-        console.log(data.tracks.items);
+            populateCoverCards(data);
+        // console.log(data.tracks.items);
 
         //creating array of song objects. each song object holds the artist(s), title, release date, album art, isrc code and a link to the spotify song
 
@@ -93,6 +94,7 @@ function getSong(tokens, songName){
 
         //     });
         // }
+
 
         let songISRC = data.tracks.items[0].external_ids.isrc;
         // this.getLyrics(songsArray);
@@ -124,7 +126,7 @@ function getLyrics(songISRC){
     .then(function(data){
 
         trackID = data.message.body.track.track_id;
-        console.log(data.message.body.track.track_id);
+        // console.log(data.message.body.track.track_id);
 
         musixmatchRUL = 'https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=';
        
@@ -145,7 +147,7 @@ function getLyrics(songISRC){
                populateLyrics(data);
                 
 
-             console.log(data.message.body.lyrics.lyrics_body);
+            //  console.log(data.message.body.lyrics.lyrics_body);
         })
         .catch(function(error){
             console.error('error:',error);

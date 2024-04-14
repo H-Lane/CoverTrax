@@ -1,4 +1,5 @@
 const coverCardContainerEl = document.getElementById(`cc-container`);
+const otLyricsContainer = document.getElementById(`ot-lyrics-container`)
 // let test = {
 //     items: [
 //         {
@@ -27,20 +28,22 @@ function populateCoverCards(data) {
 
   //Create a for loop that loops through the data and for each object populate the following elements
 
-  console.log(data);
+
   for (let i = 1; i < data.items.length; i++) {
+    const ccDivEl = document.createElement(`div`); //Element that Holds each Card for CSS purpose
     const ccBodyEl = document.createElement(`div`); //Element which holds card content
     const ccArtEl = document.createElement(`img`); //Album or Song art
     const ccTitleEl = document.createElement(`h3`); //Name of Song
     const ccArtistEl = document.createElement(`h4`); //Name of Artist
     const ccLinkEl = document.createElement(`p`); //Spotify link to song
 
+    //MIKE ADD CLASSES HERE
+    
     ccArtEl.src = data.items[i].album.images[0].url; //populate song art
     ccTitleEl.textContent = data.items[i].name; //populate song title
+    ccLinkEl.textContent = data.items[i].external_urls.spotify;//populate spotify song link
 
-    // Need to make a FOR loop to loop through the artists array and populate all of them if there are more than one
-
-    ccArtistEl.textContent = `By: `;
+    ccArtistEl.textContent = `By: `; //Populate Artists names. The following loop handles multiple artists if there is more than one.
 
     for (let j = 0; j < data.items[i].artists.length; j++) {
       if (
@@ -57,13 +60,19 @@ function populateCoverCards(data) {
       }
     }
 
-    ccLinkEl.textContent = data.items[i];
 
-    ccBodyEl.appendChild(ccArtEl);
     ccBodyEl.appendChild(ccTitleEl);
+    ccBodyEl.appendChild(ccArtEl);
     ccBodyEl.appendChild(ccArtistEl);
     ccBodyEl.appendChild(ccLinkEl);
-    coverCardContainerEl.appendChild(ccBodyEl);
+    ccDivEl.appendChild(ccBodyEl)
+    coverCardContainerEl.appendChild(ccDivEl);
     if (i === 9) break;
   }
+}
+
+populateLyrics(data){ //populate lyrics onto their HTML container
+  const otLyricsEl = document.createElement(`p`);
+  otLyricsEl.textContent = data.message.body.lyrics.lyrics_body;
+  otLyricsContainer.appendChild(otLyricsEl);
 }

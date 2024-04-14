@@ -28,8 +28,11 @@ function populateCoverCards(data) {
 
   //Create a for loop that loops through the data and for each object populate the following elements
 
+  console.log(data);
+  coverCardContainerEl.innerHTML = "";
 
-  for (let i = 1; i < data.items.length; i++) {
+
+  for (let i = 1; i < data.tracks.items.length; i++) {
     const ccDivEl = document.createElement(`div`); //Element that Holds each Card for CSS purpose
     const ccBodyEl = document.createElement(`div`); //Element which holds card content
     const ccArtEl = document.createElement(`img`); //Album or Song art
@@ -39,24 +42,24 @@ function populateCoverCards(data) {
 
     //MIKE ADD CLASSES HERE
     
-    ccArtEl.src = data.items[i].album.images[0].url; //populate song art
-    ccTitleEl.textContent = data.items[i].name; //populate song title
-    ccLinkEl.textContent = data.items[i].external_urls.spotify;//populate spotify song link
+    ccArtEl.src = data.tracks.items[i].album.images[0].url; //populate song art
+    ccTitleEl.textContent = data.tracks.items[i].name; //populate song title
+    ccLinkEl.textContent = data.tracks.items[i].external_urls.spotify;//populate spotify song link
 
     ccArtistEl.textContent = `By: `; //Populate Artists names. The following loop handles multiple artists if there is more than one.
 
-    for (let j = 0; j < data.items[i].artists.length; j++) {
+    for (let j = 0; j < data.tracks.items[i].artists.length; j++) {
       if (
-        j === data.items[i].artists.length - 1 &&
-        data.items[i].artists.length > 1
+        j === data.tracks.items[i].artists.length - 1 &&
+        data.tracks.items[i].artists.length > 1
       ) {
-        ccArtistEl.textContent += "and " + data.items[i].artists[j].name;
-      } else if (data.items[i].artists.length === 2) {
-        ccArtistEl.textContent += data.items[i].artists[j].name + " ";
-      } else if (data.items[i].artists.length === 1) {
-        ccArtistEl.textContent += data.items[i].artists[j].name;
+        ccArtistEl.textContent += "and " + data.tracks.items[i].artists[j].name;
+      } else if (data.tracks.items[i].artists.length === 2) {
+        ccArtistEl.textContent += data.tracks.items[i].artists[j].name + " ";
+      } else if (data.tracks.items[i].artists.length === 1) {
+        ccArtistEl.textContent += data.tracks.items[i].artists[j].name;
       } else {
-        ccArtistEl.textContent += data.items[i].artists[j].name + ", ";
+        ccArtistEl.textContent += data.tracks.items[i].artists[j].name + ", ";
       }
     }
 
@@ -69,10 +72,15 @@ function populateCoverCards(data) {
     coverCardContainerEl.appendChild(ccDivEl);
     if (i === 9) break;
   }
+
+
+
+  // console.log(data);
 }
 
 function populateLyrics(data){ //populate lyrics onto their HTML container
   const otLyricsEl = document.createElement(`p`);
   otLyricsEl.textContent = data.message.body.lyrics.lyrics_body;
   otLyricsContainer.appendChild(otLyricsEl);
+  console.log(data);
 }

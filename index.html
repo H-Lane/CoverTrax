@@ -6,8 +6,10 @@
     <title>Who Sang It?</title>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/css/uikit.min.css"
+      href="./assets/uikit.min.css"
     />
+    <script src="./assets/JS/uikit.min.js"></script>
+    <script src="./assets/JS/uikit-icons.js"></script>
   </head>
 
   <!-- <script src="./assets/script.js"></script> -->
@@ -17,11 +19,26 @@
       <input type="text" id="search-bar" />
     </header>
     <main id="ot-container">#ORIGINAL SONG CONTENT HERE</main>
-    <div id="ot-lyrics-container">#LYRICS HERE</div>
-    <section id="cc-container">#COVER CARDS GO HERE</section>
+    <div id="ot-lyrics-container">#LYRICS HERE
+        <button uk-toggle="target: #lyrics-button" type="button">LYRICS</button>
+        <div id="lyrics-button" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body" id="ot-lyrics">HERE ARE SOME LYRICS
+                <button class="uk-modal-close" type="button">Close</button>
+            </div>
+        </div>
+        <!-- <div>
+            <div class="uk-card uk-card default uk-card-body">
+                <h3 class="uk-card-title">TEST CARD</h3>
+                <img src="#" class="uk-border-rounded uk-margin-bottom">
+                <p class="uk-text-large">iuebvoiweubvowdifuvb nd; nsk jnsnve</p>
+            </div>
+        </div> -->
+    </div>
+    <section id="cc-container">#COVER CARDS GO HERE
+        
+    </section>
+    
 
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/js/uikit.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/js/uikit-icons.min.js"></script>
     <script src="./assets/JS/officialAPIcalls.js"></script>
     <script src="./assets/JS/cardPopulation.js"></script>
     <!-- <script src="./assets/JS/apiFetch.js"></script> -->

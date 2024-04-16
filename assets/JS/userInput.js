@@ -1,14 +1,14 @@
-let songsOnLoad = localStorage.getItem('songSearchHistory');
-let lastSearch = localStorage.getItem('lastSearch');
-let lastLoaded = JSON.parse(songsOnLoad);
-lastSearch = JSON.parse(lastSearch);
+let searchLibrary = JSON.parse(localStorage.getItem('songSearchHistory')) || [];
+let lastSearch = JSON.parse(localStorage.getItem('lastSearch'));
+// let lastLoaded = JSON.parse(songsOnLoad);
+//lastSearch = JSON.parse(lastSearch);
 
 window.addEventListener('load',function(){
 
-    //this.alert(lastLoaded);
+
     if(String(lastSearch) !== 'null'){
         
-        getTokens(lastSearch);
+    getTokens(lastSearch);
         
     }
     else{
@@ -19,21 +19,23 @@ window.addEventListener('load',function(){
 
 let searchSubmit = document.getElementById('search-submit');
 
-    searchSubmit.addEventListener('click',function(){
-    let songSearch = document.getElementById('search-bar').value;
-    console.log(songSearch);
+searchSubmit.addEventListener('click',function(event){
+//event.preventDefault();
 
-    songSearch = songSearch.trim().toLowerCase();
+let songName = document.getElementById('search-bar').value;
+getTokens(songName);
 
-    if(!songSearch) return;
+songName = songName.trim().toLowerCase();
 
-    if(!lastLoaded.includes(songSearch)){
-        lastLoaded.push(songSearch);
-    }
-    localStorage.setItem('songSearchHistory',JSON.stringify(lastLoaded));
-    localStorage.setItem('lastSearch',JSON.stringify(songSearch));
-    
-    getTokens(songSearch);
+if(!songName) return;
+
+if(!searchLibrary.includes(songName)){
+    searchLibrary.push(songName);
+}
+localStorage.setItem('songSearchHistory',JSON.stringify(searchLibrary));
+localStorage.setItem('lastSearch',JSON.stringify(songName));
 
 });
+
+
 

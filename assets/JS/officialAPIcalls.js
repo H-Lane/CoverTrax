@@ -1,6 +1,8 @@
 // Spotify client id and client secret code used to pull api key
 const clientId = '691b00a249f243f7b35fa7db79bf6ddd';
 const clientSecret = '98b920a1452a4878a9e8879811a51515';
+
+
 let userSongChoice = 'roar';
 // let singer = null;
 
@@ -30,7 +32,6 @@ function getTokens(songName){
     console.error('error:',error);
     });
 }
-
 function getSong(tokens, songName){
     
     //turn user text input into an array and replace spaces with underscores
@@ -69,37 +70,29 @@ function getSong(tokens, songName){
         return response.json();
         })
         .then(function(data){
-            populateCoverCards(data);
-        // console.log(data.tracks.items);
+            console.log(data);
 
-        //creating array of song objects. each song object holds the artist(s), title, release date, album art, isrc code and a link to the spotify song
+            // if(data.tracks.items.length < 1){
+            //     alert('invalid input');
+            //     //populateCoverCards('invalid');
+            //     return;
+            // }
+            //else{
+                populateCoverCards(data);
+                let songISRC = data.tracks.items[0].external_ids.isrc;
+                this.getLyrics(songISRC);
 
-        // for(let i = 0; i < data.tracks.items.length; i++){
+
+                // songName = songName.trim().toLowerCase();
+
+                // //if(!songName) return;
             
-        //     //group songs with multiple artits in an artist array
-        //     let artistArray = [];
-        //     for(let ar = 0; ar < data.tracks.items[i].artists.length; ar++){
-        //         artistArray.push(data.tracks.items[i].artists[ar].name);
-        //     }
-
-        //     //add an object {artist[], song name, }
-        //     songsArray.push({
-        //         artist: artistArray,
-        //         songName : data.tracks.items[i].name,
-        //         releaseDate : data.tracks.items[i].album.release_date,
-        //         albumArt : data.tracks.items[i].album.images,
-        //         spotifyLink : data.tracks.items[i].external_urls.spotify,
-        //         songISRC : data.tracks.items[i].external_ids.isrc,
-        //         songLyrics:''
-
-        //     });
-        // }
-
-
-        let songISRC = data.tracks.items[0].external_ids.isrc;
-        // this.getLyrics(songsArray);
-        this.getLyrics(songISRC);
-
+                // if(!searchLibrary.includes(songName)){
+                //     searchLibrary.push(songName);
+                // }
+                // localStorage.setItem('songSearchHistory',JSON.stringify(searchLibrary));
+                // localStorage.setItem('lastSearch',JSON.stringify(songName));
+            //}            
         })
         .catch(function(error){
         console.error('error:',error);
@@ -165,4 +158,4 @@ function getLyrics(songISRC){
 }
 
 
-getTokens(userSongChoice);
+//getTokens(userSongChoice);

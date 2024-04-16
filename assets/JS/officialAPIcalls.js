@@ -30,7 +30,6 @@ function getTokens(songName){
     console.error('error:',error);
     });
 }
-
 function getSong(tokens, songName){
     
     //turn user text input into an array and replace spaces with underscores
@@ -69,6 +68,7 @@ function getSong(tokens, songName){
         return response.json();
         })
         .then(function(data){
+            
             populateCoverCards(data);
         // console.log(data.tracks.items);
 
@@ -98,7 +98,7 @@ function getSong(tokens, songName){
 
         let songISRC = data.tracks.items[0].external_ids.isrc;
         // this.getLyrics(songsArray);
-        this.getLyrics(songISRC);
+       // this.getLyrics(songISRC);
 
         })
         .catch(function(error){
@@ -165,4 +165,4 @@ function getLyrics(songISRC){
 }
 
 
-getTokens(userSongChoice);
+//getTokens(userSongChoice);

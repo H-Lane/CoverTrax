@@ -80,18 +80,14 @@ function populateCoverCards(data) {
     coverCardContainerEl.appendChild(ccDivEl);
     if (i === 9) break;
   }
-
-
-
-  // console.log(data);
-}
+};
 
 function populateLyrics(data){ //populate lyrics onto their HTML container
-  const otLyricsEl = document.createElement(`p`);
+  const otLyricsEl = document.getElementById(`ot-lyrics`);
   otLyricsEl.textContent = data.message.body.lyrics.lyrics_body;
   otLyricsContainer.appendChild(otLyricsEl);
   console.log(data);
-}
+};
 
 // On page load, pull the most recent search term out of the local storage array using array.length - 1, then use that term to pass into our fetch requests to populate the page and run the populate functions.
 

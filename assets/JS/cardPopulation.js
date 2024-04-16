@@ -38,6 +38,10 @@ function populateCoverCards(data) {
     const ccLinkEl = document.createElement(`p`); //Spotify link to song
 
     //MIKE ADD CLASSES HERE
+    ccBodyEl.classList.add(`uk-card`, `uk-card-body`, `uk-card-default`);
+    ccArtEl.classList.add(`none`);
+    ccTitleEl.classList.add(`uk-card-title`);
+    ccArtContEl.classList.add(`uk-card-media-top`);
     
     ccArtEl.src = data.items[i].album.images[0].url; //populate song art
     ccTitleEl.textContent = data.items[i].name; //populate song title

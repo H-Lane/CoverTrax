@@ -1,5 +1,7 @@
 const coverCardContainerEl = document.getElementById(`cc-container`);
-const otLyricsContainer = document.getElementById(`ot-lyrics-container`)
+const otLyricsContainer = document.getElementById(`ot-lyrics-container`);
+
+
 // let test = {
 //     items: [
 //         {
@@ -29,18 +31,24 @@ function populateCoverCards(data) {
   //Create a for loop that loops through the data and for each object populate the following elements
 
   console.log(data);
-
+  coverCardContainerEl.innerHTML = "";
 
 
   for (let i = 1; i < data.tracks.items.length; i++) {
     const ccDivEl = document.createElement(`div`); //Element that Holds each Card for CSS purpose
     const ccBodyEl = document.createElement(`div`); //Element which holds card content
+    const ccArtContEl = document.createElement(`div`); //Container for the album art styling
     const ccArtEl = document.createElement(`img`); //Album or Song art
     const ccTitleEl = document.createElement(`h3`); //Name of Song
     const ccArtistEl = document.createElement(`h4`); //Name of Artist
     const ccLinkEl = document.createElement(`p`); //Spotify link to song
 
     //MIKE ADD CLASSES HERE
+    ccBodyEl.classList.add(`uk-card`, `uk-card-body`, `uk-card-default`);
+    ccArtEl.classList.add(`none`);
+    ccTitleEl.classList.add(`uk-card-title`);
+    ccArtContEl.classList.add(`uk-card-media-top`);
+
     
     ccArtEl.src = data.tracks.items[i].album.images[0].url; //populate song art
     ccTitleEl.textContent = data.tracks.items[i].name; //populate song title
@@ -63,24 +71,23 @@ function populateCoverCards(data) {
       }
     }
 
-
+    ccArtContEl.appendChild(ccArtEl);
     ccBodyEl.appendChild(ccTitleEl);
-    ccBodyEl.appendChild(ccArtEl);
+    ccBodyEl.appendChild(ccArtContEl);
     ccBodyEl.appendChild(ccArtistEl);
     ccBodyEl.appendChild(ccLinkEl);
     ccDivEl.appendChild(ccBodyEl)
     coverCardContainerEl.appendChild(ccDivEl);
     if (i === 9) break;
   }
-
-
-
-  // console.log(data);
-}
+};
 
 function populateLyrics(data){ //populate lyrics onto their HTML container
-  const otLyricsEl = document.createElement(`p`);
+  const otLyricsEl = document.getElementById(`ot-lyrics`);
   otLyricsEl.textContent = data.message.body.lyrics.lyrics_body;
   otLyricsContainer.appendChild(otLyricsEl);
   console.log(data);
-}
+};
+
+// On page load, pull the most recent search term out of the local storage array using array.length - 1, then use that term to pass into our fetch requests to populate the page and run the populate functions.
+

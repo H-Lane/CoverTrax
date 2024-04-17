@@ -13,3 +13,13 @@
 .suggestions div:hover{
     background-color: #f0f0f0;
 }
+#forward, #back{
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    background-color: red;
+}
+.arrows{
+    display: flex;
+    flex-direction: row;
+}

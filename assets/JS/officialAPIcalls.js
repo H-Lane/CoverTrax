@@ -49,6 +49,9 @@ function getSong(tokens, songName){
             newName = newName  + name[i] +'_';
         }
     }
+    if(newName.charAt(newName.length-1) === '_'){
+        newName = newName.slice(0,-1);
+    }
     // console.log(newName);
 
     //combie url components to make api query for specific song

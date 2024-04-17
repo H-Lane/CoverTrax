@@ -62,8 +62,7 @@ function populateLyrics(data) {
   //populate lyrics onto their HTML container
   const otLyricsEl = document.getElementById(`ot-lyrics`);
   otLyricsEl.textContent = data.message.body.lyrics.lyrics_body;
-  otLyricsContainer.appendChild(otLyricsEl);
-  console.log(data);
+  // console.log(data);
 }
 
 function populateOtCard(data) {

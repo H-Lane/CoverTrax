@@ -1,6 +1,6 @@
 .suggestions{
-    position: relative;
-    width: 200px;
+    position: absolute;
+    width: 50%px;
     background: white;
     border: 1px solid #ccc;
     border-top: none;

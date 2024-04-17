@@ -205,7 +205,7 @@ function getSongSS(tokens, songName){
 
     //combie url components to make api query for specific song
     let start = 'https://api.spotify.com/v1/search?q=';
-    let end = '&type=track&limit=50';
+    let end = '&type=track&limit=5';
     let song = start+newName+end;
 
         fetch(song,{

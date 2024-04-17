@@ -2,28 +2,6 @@ const coverCardContainerEl = document.getElementById(`cc-container`);
 const otLyricsContainer = document.getElementById(`ot-lyrics-container`);
 const otCardContainerEl = document.getElementById(`ot-container`);
 
-// let test = {
-//     items: [
-//         {
-
-//         },
-//         {
-//             artists: [
-//                 {
-//                     name: "John Smith"
-//                 },
-//                 {
-//                     name: "Billy Bubba"
-//                 },
-//                 {
-//                     name: "Heya"
-//                 },
-//             ]
-//         }
-//     ]
-// };
-
-// populateCoverCards(test);
 
 function populateCoverCards(data) {
   //Pass this function in the API fetch request with the data parameter to populate the cards for the cover songs
@@ -89,17 +67,17 @@ function populateLyrics(data) {
 }
 
 function populateOtCard(data) {
-  const otDivEl = document.getElementById(``); //Element that points to the container for the ot card
-  const otBodyEl = document.getElementById(``); //Element points to the the content for the ot card
-  const otArtContEl = document.getElementById(``); //Element that has the style container for the art
-  const otArtEl = document.getElementById(``); //Element that points to the album art
-  const otTitleEl = document.getElementById(``); //Element that points to the song name
-  const otArtistEl = document.getElementById(``); //Element that points to the artists names
-  const otLinkEl = document.getElementById(``); //Element that points to the spotify link
+  const otDivEl = document.getElementById(`ot-container`); //Element that points to the container for the ot card
+  const otBodyEl = document.getElementById(`ot-body`); //Element points to the the content for the ot card
+  const otArtContEl = document.getElementById(`ot-art-container`); //Element that has the style container for the art
+  const otArtEl = document.getElementById(`ot-album-art`); //Element that points to the album art
+  const otTitleEl = document.getElementById(`ot-song-title`); //Element that points to the song name
+  const otArtistEl = document.getElementById(`ot-artist`); //Element that points to the artists names
+  const otLinkEl = document.getElementById(`ot-song-link`); //Element that points to the spotify link
 
   otArtEl.src = data.tracks.items[0].album.images[0].url; //populate song art
   otTitleEl.textContent = data.tracks.items[0].name; //populate song title
-  otLinkEl.textContent = data.tracks.items[0].external_urls.spotify; //populate spotify song link
+  otLinkEl.href = data.tracks.items[0].external_urls.spotify; //populate spotify song link
 
   otArtistEl.textContent = `By: `; //Populate Artists names. The following loop handles multiple artists if there is more than one.
 

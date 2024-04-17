@@ -78,6 +78,7 @@ function populateOtCard(data) {
   otArtEl.src = data.tracks.items[0].album.images[0].url; //populate song art
   otTitleEl.textContent = data.tracks.items[0].name; //populate song title
   otLinkEl.href = data.tracks.items[0].external_urls.spotify; //populate spotify song link
+  otLinkEl.textContent = "Find this song on Spotify"
 
   otArtistEl.textContent = `By: `; //Populate Artists names. The following loop handles multiple artists if there is more than one.
 

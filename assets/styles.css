@@ -1,0 +1,15 @@
+.suggestions{
+    position: relative;
+    width: 200px;
+    background: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    display: none;
+}
+.suggestions div{
+    padding: 8px;
+    cursor: pointer;
+}
+.suggestions div:hover{
+    background-color: #f0f0f0;
+}

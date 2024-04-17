@@ -8,11 +8,26 @@ window.addEventListener('load',function(){
 
     if(String(lastSearch) !== 'null'){
         
-    getTokens(lastSearch);
+        getTokens(lastSearch);
         
     }
     else{
         getTokens('nothing');
+    }
+
+});
+this.document.getElementById('search-bar').addEventListener('keyup',function(){
+   // alert('there was a key up');
+    let searchText = this.value;
+    let suggestionBox = document.getElementById('suggestion-box');
+    suggestionBox.innerHTML = '';
+    if(searchText.length>0){
+
+        getTokensSS(searchText);
+        
+
+    }else{
+        suggestionBox.style.display = 'none';
     }
 
 });

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Who Sang It?</title>
+    <link rel="stylesheet" href="./assets/styles.css">
 </head>
 
 <!-- <script src="./assets/script.js"></script> -->
@@ -13,7 +14,8 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
           <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search-bar">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search-bar" autocomplete="off">
+            <div id="suggestion-box" class="suggestions"></div>
             <button class="btn btn-outline-success" type="submit" id="search-submit">Search</button>
           </form>
         </div>
@@ -32,6 +34,7 @@
     
     <script src="./assets/JS/officialAPIcalls.js"></script>
     <script src="./assets/JS/cardPopulation.js"></script>
+    <script src="./assets/JS/suggestions.js"></script>
     <script src="./assets/JS/userInput.js"></script>
     <!-- <script src="./assets/JS/apiFetch.js"></script> -->
 

@@ -1,0 +1,89 @@
+.navbar {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.5
+  ); /* Adjust the alpha (last) value for transparency */
+  backdrop-filter: blur(10px);
+  display: flex;
+  padding-left: 20px;
+}
+.navbar form {
+  display: flex;
+  width: 800px;
+}
+.navbar img {
+  width: 200px;
+  padding-right: 20px;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three columns */
+  gap: 20px; /* Gap between cards */
+}
+.uk-card {
+  width: 300px; /* Adjust width as needed */
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for the main content container */
+#ot-container {
+  text-align: center;
+}
+
+/* Styling for the album art */
+#ot-album-art {
+  width: 200px; /* Adjust size as needed */
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Styling for the song title */
+#ot-song-title {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+/* Styling for the artist */
+#ot-artist {
+  margin-top: 5px;
+  font-style: italic;
+}
+
+/* Styling for the song link */
+#ot-song-link {
+  display: block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: blue;
+}
+
+/* Styling for the lyrics container */
+#ot-lyrics-container {
+  margin-top: 20px;
+}
+
+/* Styling for the lyrics button */
+#lyrics-button {
+  display: none; /* Hide by default */
+}
+
+/* Styling for the lyrics modal */
+#ot-lyrics {
+  text-align: left;
+}
+
+/* Styling for the close button inside the modal */
+.uk-modal-close {
+  float: right;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: red;
+  font-weight: bold;
+}

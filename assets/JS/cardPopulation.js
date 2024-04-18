@@ -3,6 +3,7 @@ const otLyricsContainer = document.getElementById(`ot-lyrics-container`);
 const otCardContainerEl = document.getElementById(`ot-container`);
 
 
+
 function populateCoverCards(data) {
   //Pass this function in the API fetch request with the data parameter to populate the cards for the cover songs
 
@@ -18,17 +19,30 @@ function populateCoverCards(data) {
     const ccArtEl = document.createElement(`img`); //Album or Song art
     const ccTitleEl = document.createElement(`h3`); //Name of Song
     const ccArtistEl = document.createElement(`h4`); //Name of Artist
-    const ccLinkEl = document.createElement(`p`); //Spotify link to song
+    const ccLinkEl = document.createElement(`a`); //Spotify link to song
 
     //MIKE ADD CLASSES HERE
-    ccBodyEl.classList.add(`uk-card`, `uk-card-body`, `uk-card-default`);
+    ccDivEl.classList.add(
+      `uk-card`,
+      `uk-card-body`,
+      `uk-card-default`,
+      `uk-card-media-top`,
+      `uk-card-title`
+    );
+    ccBodyEl.classList.add(`uk-card`, `uk-card-body`, `uk-card-media-top`);
+    ccArtContEl.classList.add(`uk-card-media-top`);
     ccArtEl.classList.add(`none`);
     ccTitleEl.classList.add(`uk-card-title`);
-    ccArtContEl.classList.add(`uk-card-media-top`);
+    ccArtistEl.classList.add();
+    ccLinkEl.classList.add(`lyrics-button`);
 
     ccArtEl.src = data.tracks.items[i].album.images[0].url; //populate song art
     ccTitleEl.textContent = data.tracks.items[i].name; //populate song title
-    ccLinkEl.textContent = data.tracks.items[i].external_urls.spotify; //populate spotify song link
+
+    ccLinkEl.setAttribute("href", data.tracks.items[i].external_urls.spotify);
+    ccLinkEl.setAttribute("target", "_blank"); //Opens a new tab when clicked
+    ccLinkEl.textContent = "Link to song"; //populate spotify song link
+    // ccLinkEl.textContent = data.tracks.items[i].external_urls.spotify
 
     ccArtistEl.textContent = `By: `; //Populate Artists names. The following loop handles multiple artists if there is more than one.
 
@@ -95,6 +109,7 @@ function populateOtCard(data) {
       otArtistEl.textContent += data.tracks.items[0].artists[j].name + ", ";
     }
   }
+
 
   otArtContEl.appendChild(otArtEl);
   otBodyEl.appendChild(otTitleEl);

@@ -3,46 +3,102 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Who Sang It?</title>
+
+    <title>CoverTrax</title>
+ 
 
     <link rel="stylesheet" href="./assets/uikit.min.css" />
     <link rel="stylesheet" href="./assets/styles.css">
 
     <script src="./assets/JS/uikit.min.js"></script>
     <script src="./assets/JS/uikit-icons.js"></script>
+    <script src="./assets/script.js"></script>
   </head>
-
-
   <body>
 
-      <div class="arrows">
+
+
+  
+  <header>
+
+
+<!-- #SEARCH BAR AND LOGO HERE -->
+
+  
+
+<div id="frosted-glass" 
+  <div uk-sticky>  
+    <nav class="navbar navbar-light bg-light">
+      <img src="/assets/images/covertraxlogo.svg" alt="CoverTrax logo">
+        <div class="container-fluid">
+          <form class="uk-search uk-search-default d-flex">
+            <!-- <span class="uk-search-icon-flip" uk-search-icon></span>   -->
+            <input class="uk-search-input" type="search" placeholder="Search" aria-label="Search" 
+            autocomplete= "off" id="search-bar">
+            <div id="suggestion-box" class="suggestions"></div>
+            <button class="btn btn-outline-success" type="submit" id="search-submit">Search</button>
+          </form>
+                <div class="arrows">
         <button id="back">Go Back</button>
         <button id="forward">Go Forward</button>
       </div>
-
-
-
-    <header>
-      #SEARCH BAR AND LOGO HERE
-      <input type="text" id="search-bar" />
-    </header>
-
-
-    <main id="ot-container">#ORIGINAL SONG CONTENT HERE</main>
-    <div id="ot-lyrics-container">
-      #LYRICS HERE
-      <!-- ADDED MODAL FOR LYRICS BELOW  -->
-      <button uk-toggle="target: #lyrics-button" type="button">LYRICS</button>
-      <div id="lyrics-button" uk-modal>
-        <div class="uk-modal-dialog uk-modal-body" id="ot-lyrics">
-          HERE ARE SOME LYRICS
-          <button class="uk-modal-close" type="button">Close</button>
         </div>
+      </nav>
+  </div>
+</div>
+</header>
+
+
+  <div class="uk-card uk-card-default uk-card-media-top ">
+      <main id="ot-container">#ORIGINAL SONG CONTENT HERE
+      <div id="ot-body">
+        <div id="ot-art-container">
+          <img src="#" id="ot-album-art" alt="">
+        </div>
+        <h2 id="ot-song-title"></h2>
+        <p id="ot-artist"></p>
+        <a href="#" id="ot-song-link"></a>
       </div>
-    </div>
-    <section id="cc-container">#COVER CARDS GO HERE</section>
+      </main>
+        <div id="ot-lyrics-container">#LYRICS HERE
+          <div id="lyrics-button" uk-modal>
+              <div class="uk-modal-dialog uk-modal-body" id="ot-lyrics">HERE ARE SOME LYRICS
+              <button class="uk-modal-close" type="button">Close</button>
+              </div>
+          </div>
+        <button uk-toggle="target: #lyrics-button"class="uk-button uk-button-primary">Lyrics</button>
+      </div>
+    </div>      
+
+
+
+
+
+
+
+
+
+    <section id="cc-container">#COVER CARDS GO HERE
+        
+    </section>
+      
+
+    
+
+
+   
+    
+
+
+
+
+
+
+
+    
 
     <script src="./assets/JS/officialAPIcalls.js"></script>
+
     <script src="./assets/JS/userInput.js"></script>
     <script src="./assets/JS/cardPopulation.js"></script>
     <!-- <script src="./assets/JS/apiFetch.js"></script> -->

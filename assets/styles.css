@@ -109,6 +109,7 @@ img {
   border-radius: 25px;
 }
 
+/* styling for the suggestions div created by the spotify api */
 .suggestions {
   position: absolute;
   width: 50%;
@@ -116,6 +117,7 @@ img {
   border: 1px solid #ccc;
   border-top: none;
   display: none;
+  top: 40px;
 }
 
 .suggestions div {
@@ -127,16 +129,33 @@ img {
   background-color: #f0f0f0;
 }
 
+/* styling for the forward, back and history arrows */
+
 #forward,
 #back,
 #reset {
   border-radius: 25px;
   color: white;
-  width: 100px;
+  width: 120px;
   height: 30px;
   margin: 10px;
   background-color: #59a3c2;
 }
+
+#search-history {
+  position: absolute;
+  top: 100px;
+  right: 50px;
+  color: white;
+  width: 120px;
+  height: 30px;
+  margin: 10px;
+  background-color: #59a3c2;
+
+}
+.arrows:hover, .arrows:target {
+  cursor:pointer;
+
 
 #reset {
   text-align: center;
@@ -211,4 +230,21 @@ h5 {
 
 h2 {
   margin-top: 20px;
+
+}
+#history-box{
+  background-color: #59a3c2;
+  color:white;
+  position: absolute;
+  top: 150px;
+  right: 50px;
+  border: 5px solid black;
+  padding: 10px;
+}
+.search-item:hover{
+  cursor: pointer;
+  color:blue;
+}
+#history-box h2{
+  color:white;
 }

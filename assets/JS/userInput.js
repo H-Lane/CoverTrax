@@ -8,6 +8,7 @@ console.log(lastHistory);
 let searchSubmit = document.getElementById('search-submit');
 let back = document.getElementById('back');
 let forward = document.getElementById('forward');
+let searchHistory = document.getElementById('search-history');
 //let searchName = '';
 // let lastLoaded = JSON.parse(songsOnLoad);
 //lastSearch = JSON.parse(lastSearch);
@@ -102,6 +103,13 @@ window.addEventListener('load',function(){
             alert('cannot go any further forward');
         }
     });
+    searchHistory.addEventListener('click',function(event){
+
+        //alert('event');
+        populateHistory(searchLibrary);
+
+    });
+
 
 });
 

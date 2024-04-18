@@ -81,10 +81,10 @@ function getSong(tokens, songName){
             //     return;
             // }
             //else{
-                populateOtCard(data);
+                //populateOtCard(data);
                 populateCoverCards(data);
                 let songISRC = data.tracks.items[0].external_ids.isrc;
-                this.getLyrics(songISRC);
+                //this.getLyrics(songISRC);
 
 
                 // songName = songName.trim().toLowerCase();

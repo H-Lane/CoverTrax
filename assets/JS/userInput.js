@@ -1,5 +1,7 @@
 let searchLibrary = JSON.parse(localStorage.getItem('songSearchHistory')) || [];
-let searchIndex = JSON.parse(localStorage.getItem('searchIndex'));
+let searchIndex = JSON.parse(sessionStorage.getItem('searchIndex'));
+let allSearches = JSON.parse(sessionStorage.getItem('allSearches')) ||[];
+let lastSearch = JSON.parse(localStorage.getItem('lastSearch'));
 //let currentState = JSON.parse(localStorage.getItem('currentStates'));
 let lastHistory = window.history.length;
 console.log(lastHistory);
@@ -13,10 +15,9 @@ let forward = document.getElementById('forward');
 window.addEventListener('load',function(){
 
 
-    if(String(searchLibrary) !== 'null'){ 
-        setUrl(searchLibrary[searchIndex-1]);
-        getTokens(searchLibrary[searchIndex-1]);
-
+    if(String(lastSearch) !== 'null'){ 
+        setUrl(lastSearch);
+        getTokens(lastSearch);
     }
     else{
         getTokens('search for a song');
@@ -42,30 +43,45 @@ window.addEventListener('load',function(){
     
     //event.preventDefault();
     let songName = document.getElementById('search-bar').value;
-    searchLibrary.push(songName);
-    searchIndex = searchLibrary.length;
+    //searchLibrary.push(songName);
     getTokens(songName);
     changeUrl(songName);
+    
+    lastSearch = songName;
+    allSearches.push(songName);
+    searchIndex = allSearches.length;
+    localStorage.setItem('lastSearch',JSON.stringify(lastSearch));
+    sessionStorage.setItem('searchIndex',JSON.stringify(searchIndex));
+    sessionStorage.setItem('allSearches',JSON.stringify(allSearches));
+    songName = songName.trim().toLowerCase();
+
+    if(!songName) return;
+
+    if(!searchLibrary.includes(songName)){
+        searchLibrary.push(songName);
+    }
     localStorage.setItem('songSearchHistory',JSON.stringify(searchLibrary));
-    localStorage.setItem('searchIndex',JSON.stringify(searchIndex));
     
     });
 
     
-    window.addEventListener('popstate',function(event){
+    // window.addEventListener('popstate',function(event){
     
-        searchIndex = searchIndex - 1;
-        localStorage.setItem('searchIndex',JSON.stringify(searchIndex));
+    //     searchIndex = searchIndex - 1;
+    //     localStorage.setItem('searchIndex',JSON.stringify(searchIndex));
     
-     });
+    //  });
     
      back.addEventListener('click',function(event){
         
         if(searchIndex > 1){
             searchIndex = searchIndex - 1;
-            localStorage.setItem('searchIndex',JSON.stringify(searchIndex));
-            setUrl(searchLibrary[searchIndex-1]);
-            getTokens(searchLibrary[searchIndex-1]);
+            sessionStorage.setItem('searchIndex',JSON.stringify(searchIndex));
+            lastSearch = allSearches[searchIndex-1];
+            console.log(lastSearch);
+            localStorage.setItem('lastSearch',JSON.stringify(lastSearch));
+            setUrl(lastSearch);
+            getTokens(lastSearch);
             location.reload();
         }
         else{
@@ -73,11 +89,13 @@ window.addEventListener('load',function(){
         }
     });
     forward.addEventListener('click',function(event){
-        if(searchIndex < searchLibrary.length){
-            searchIndex = searchIndex+1;
-            localStorage.setItem('searchIndex',JSON.stringify(searchIndex));
-            setUrl(searchLibrary[searchIndex-1]);
-            getTokens(searchLibrary[searchIndex-1]);
+        if(searchIndex < allSearches.length){
+            searchIndex = searchIndex + 1;
+            sessionStorage.setItem('searchIndex',JSON.stringify(searchIndex));
+            lastSearch = allSearches[searchIndex-1];
+            localStorage.setItem('lastSearch',JSON.stringify(lastSearch));
+            setUrl(lastSearch);
+            getTokens(lastSearch);
             location.reload();
         }
         else{
@@ -87,6 +105,11 @@ window.addEventListener('load',function(){
 
 });
 
+// window.addEventListener('beforeunload',function(event){
+//     let startIndex = allSearches.length-1;
+//     lastSearch = allSearches[startIndex];
+//     localStorage.setItem('lastSearch',JSON.stringify(lastSearch));
+// });
 
 function changeUrl(songName){
     let name = songName.split(' ');

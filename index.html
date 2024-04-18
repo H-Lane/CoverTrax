@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Who Sang It?</title>
+<<<<<<< HEAD
     <link rel="stylesheet" href="./assets/styles.css">
 </head>
+=======
+    <link
+      rel="stylesheet"
+      href="./assets/uikit.min.css"
+    />
+    <script src="./assets/JS/uikit.min.js"></script>
+    <script src="./assets/JS/uikit-icons.js"></script>
+  </head>
+>>>>>>> 47b1c4b969b8047367268e0cedbf283d22a73496
 
-<!-- <script src="./assets/script.js"></script> -->
-<body>
 
-    <!-- temp menu -->
+  <!-- <script src="./assets/script.js"></script> -->
+  <body>
+        <!-- temp menu -->
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
           <form class="d-flex">
@@ -20,26 +30,44 @@
           </form>
         </div>
       </nav>
+<<<<<<< HEAD
       <div class="arrows">
         <button id="back">Go Back</button>
         <button id="forward">Go Forward</button>
       </div>
+=======
+    <header>
+      #SEARCH BAR AND LOGO HERE
+      <input type="text" id="search-bar" />
+    </header>
+>>>>>>> 47b1c4b969b8047367268e0cedbf283d22a73496
 
-
-
-    <header>#SEARCH BAR AND LOGO HERE</header>
     <main id="ot-container">#ORIGINAL SONG CONTENT HERE</main>
-    <div id="ot-lyrics-container">#LYRICS HERE</div>
+    <div id="ot-lyrics-container">#LYRICS HERE
+        <button uk-toggle="target: #lyrics-button" type="button">LYRICS</button>
+        <div id="lyrics-button" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body" id="ot-lyrics">HERE ARE SOME LYRICS
+                <button class="uk-modal-close" type="button">Close</button>
+            </div>
+        </div>
+        <!-- <div>
+            <div class="uk-card uk-card default uk-card-body">
+                <h3 class="uk-card-title">TEST CARD</h3>
+                <img src="#" class="uk-border-rounded uk-margin-bottom">
+                <p class="uk-text-large">iuebvoiweubvowdifuvb nd; nsk jnsnve</p>
+            </div>
+        </div> -->
+    </div>
     <section id="cc-container">#COVER CARDS GO HERE
-
+        
     </section>
 
-    <!-- <script type="text/javascript" src="http://tracking.musixmatch.com/t1.0/AMa6hJCIEzn1v8RuOP"></script> -->
     
+
+
     <script src="./assets/JS/officialAPIcalls.js"></script>
     <script src="./assets/JS/cardPopulation.js"></script>
     <script src="./assets/JS/userInput.js"></script>
     <!-- <script src="./assets/JS/apiFetch.js"></script> -->
-
-</body>
+  </body>
 </html>

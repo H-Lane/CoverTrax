@@ -1,0 +1,25 @@
+.suggestions{
+    position: absolute;
+    width: 50%px;
+    background: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    display: none;
+}
+.suggestions div{
+    padding: 8px;
+    cursor: pointer;
+}
+.suggestions div:hover{
+    background-color: #f0f0f0;
+}
+#forward, #back{
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    background-color: red;
+}
+.arrows{
+    display: flex;
+    flex-direction: row;
+}

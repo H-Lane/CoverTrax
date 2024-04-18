@@ -49,6 +49,9 @@ function getSong(tokens, songName){
             newName = newName  + name[i] +'_';
         }
     }
+    if(newName.charAt(newName.length-1) === '_'){
+        newName = newName.slice(0,-1);
+    }
     // console.log(newName);
 
     //combie url components to make api query for specific song
@@ -78,6 +81,7 @@ function getSong(tokens, songName){
             //     return;
             // }
             //else{
+                populateOtCard(data);
                 populateCoverCards(data);
                 let songISRC = data.tracks.items[0].external_ids.isrc;
                 this.getLyrics(songISRC);
@@ -157,5 +161,98 @@ function getLyrics(songISRC){
 
 }
 
+//search suggestions functions
+function getTokensSS(songName){
+
+    //use client id and client secret to get api key
+    const encodedCredentials = btoa(`${clientId}:${clientSecret}`);
+    fetch('https://accounts.spotify.com/api/token', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': `Basic ${encodedCredentials}` // Basic <base64 encoded clientId:clientSecret>
+        },
+        body: 'grant_type=client_credentials' // Data sent as URL-encoded form
+    })
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        // console.log(data);
+
+        //data is the spotify api key
+        //song name is the song name input from the user
+        this.getSongSS(data, songName);
+    })
+    .catch(function(error){
+    console.error('error:',error);
+    });
+}
+function getSongSS(tokens, songName){
+    let searchSuggestions = [];
+    //turn user text input into an array and replace spaces with underscores
+    let name = songName.split(' ');
+    // console.log(name);
+    let newName = '';
+    for(let i =0;i<name.length;i++){
+        // console.log(name[i]);
+        if(i === 0){
+            newName = name[i] + '_';
+        }
+        else if(i === name.length-1){
+            newName = newName + name[i];
+        }else{
+            newName = newName  + name[i] +'_';
+        }
+    }
+    // console.log(newName);
+
+    //combie url components to make api query for specific song
+    let start = 'https://api.spotify.com/v1/search?q=';
+    let end = '&type=track&limit=5';
+    let song = start+newName+end;
+
+        fetch(song,{
+            method: 'GET',
+            headers: {
+            'Authorization': `${tokens.token_type} ${tokens.access_token}`
+            }
+        })
+        .then(function(response){
+        return response.json();
+        })
+        .then(function(data){
+            console.log(data);
+            let suggestionBox = document.getElementById('suggestion-box');
+            suggestionBox.innerHTML = '';
+
+            let songSuggestions = [];
+            for(let i = 0; i < data.tracks.items.length; i++){
+             
+                songSuggestions.push(data.tracks.items[i].name);
+            }
+
+            songSuggestions.forEach(function(suggested){
+
+                let div = document.createElement('div');
+                div.innerHTML = suggested;
+
+                div.onclick = function(){
+                    document.getElementById('search-bar').value = this.textContent;
+                    suggestionBox.innerHTML = '';
+                    suggestionBox.style.display = 'none';
+    
+                };
+                suggestionBox.appendChild(div);
+
+            });
+            suggestionBox.style.display = 'block';
+          
+        })
+        .catch(function(error){
+        console.error('error:',error);
+        });
+
+}
 
 //getTokens(userSongChoice);

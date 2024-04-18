@@ -36,6 +36,7 @@ function populateHistory(searches){
             sessionStorage.setItem('allSearches',JSON.stringify(allSearches));
             //search for song selected from history
             getTokens(event.target.textContent);
+            historyBox.style.display ='none';
         }
     });
       //  console.log(historyBox);

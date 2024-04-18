@@ -95,6 +95,7 @@
   border: 1px solid #ccc;
   border-top: none;
   display: none;
+  top: 40px;
 }
 .suggestions div {
   padding: 8px;

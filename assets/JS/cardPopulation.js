@@ -2,8 +2,6 @@ const coverCardContainerEl = document.getElementById(`cc-container`);
 const otLyricsContainer = document.getElementById(`ot-lyrics-container`);
 const otCardContainerEl = document.getElementById(`ot-container`);
 
-
-
 function populateCoverCards(data) {
   //Pass this function in the API fetch request with the data parameter to populate the cards for the cover songs
 
@@ -76,7 +74,7 @@ function populateLyrics(data) {
   //populate lyrics onto their HTML container
   const otLyricsEl = document.getElementById(`ot-lyrics`);
   otLyricsEl.textContent = data.message.body.lyrics.lyrics_body;
-  // console.log(data);
+  console.log(data);
 }
 
 function populateOtCard(data) {
@@ -91,7 +89,7 @@ function populateOtCard(data) {
   otArtEl.src = data.tracks.items[0].album.images[0].url; //populate song art
   otTitleEl.textContent = data.tracks.items[0].name; //populate song title
   otLinkEl.href = data.tracks.items[0].external_urls.spotify; //populate spotify song link
-  otLinkEl.textContent = "Find this song on Spotify"
+  otLinkEl.textContent = "Find this song on Spotify";
 
   otArtistEl.textContent = `By: `; //Populate Artists names. The following loop handles multiple artists if there is more than one.
 
@@ -109,14 +107,5 @@ function populateOtCard(data) {
       otArtistEl.textContent += data.tracks.items[0].artists[j].name + ", ";
     }
   }
-
-
-  otArtContEl.appendChild(otArtEl);
-  otBodyEl.appendChild(otTitleEl);
-  otBodyEl.appendChild(otArtContEl);
-  otBodyEl.appendChild(otArtistEl);
-  otBodyEl.appendChild(otLinkEl);
-  otDivEl.appendChild(otBodyEl);
-  otCardContainerEl.appendChild(otDivEl);
 }
 // On page load, pull the most recent search term out of the local storage array using array.length - 1, then use that term to pass into our fetch requests to populate the page and run the populate functions.

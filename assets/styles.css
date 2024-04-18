@@ -14,7 +14,7 @@
 
   background-color: white;
   display: flex;
-  width: 800px;
+  width: auto;
 }
 
 .navbar img {
@@ -22,7 +22,7 @@
   padding-right: 20px;
 }
 
-#button,
+button,
 #search-submit {
   border-color: rgba(0, 0, 0, 0);
   margin-top: 1px;
@@ -31,7 +31,7 @@
 }
 
 body {
-  background-image: url("./assets/images/lights.jpeg");
+  background-image: url(./images/lights.jpeg) ;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
@@ -85,7 +85,7 @@ img {
 #ot-lyrics-container {
   align-self: flex-start;
   text-align: right;
-  margin-right: ;
+   margin-right: 0 ;
 }
 
 #ot-song-title {
@@ -156,7 +156,7 @@ img {
 .arrows:hover, .arrows:target {
   cursor:pointer;
 
-
+}
 #reset {
   text-align: center;
   align-items: center;
@@ -206,9 +206,9 @@ button a {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#spotify,
+/* #spotify,
 #cover-trax {
-}
+} */
 
 #spotify {
   height: 100px;

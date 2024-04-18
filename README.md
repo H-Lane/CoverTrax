@@ -29,7 +29,7 @@ The basic CSS styling sheet can be found at [./assets/styles.css](./assets/style
 
 The live deployment of this project can be found at [https://h-lane.github.io/CoverTrax/](https://h-lane.github.io/CoverTrax/)
 
-![alt text](ADD A SCREENSHOT HERE!!!)
+![alt text](./assets/images/CoverTrax%20Image.png)
 
 ## Credits
 

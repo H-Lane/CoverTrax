@@ -20,19 +20,13 @@ function populateCoverCards(data) {
     const ccLinkEl = document.createElement(`a`); //Spotify link to song
 
     //MIKE ADD CLASSES HERE
-    ccDivEl.classList.add(
-      `uk-card`,
-      `uk-card-body`,
-      `uk-card-default`,
-      `uk-card-media-top`,
-      `uk-card-title`
-    );
-    ccBodyEl.classList.add(`uk-card`, `uk-card-body`, `uk-card-media-top`);
-    ccArtContEl.classList.add(`uk-card-media-top`);
-    ccArtEl.classList.add(`none`);
-    ccTitleEl.classList.add(`uk-card-title`);
+    ccDivEl.classList.add();
+    ccBodyEl.classList.add();
+    ccArtContEl.classList.add();
+    ccArtEl.classList.add();
+    ccTitleEl.classList.add();
     ccArtistEl.classList.add();
-    ccLinkEl.classList.add(`lyrics-button`);
+    ccLinkEl.classList.add();
 
     ccArtEl.src = data.tracks.items[i].album.images[0].url; //populate song art
     ccTitleEl.textContent = data.tracks.items[i].name; //populate song title

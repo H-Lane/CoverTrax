@@ -10,14 +10,13 @@
     <link rel="stylesheet" href="./assets/uikit.min.css" />
     <link rel="stylesheet" href="./assets/styles.css">
 
+
     <script src="./assets/JS/uikit.min.js"></script>
     <script src="./assets/JS/uikit-icons.js"></script>
     <script src="./assets/script.js"></script>
   </head>
   <body>
-
-
-
+    <button id="search-history">Search History</button>
   
   <header>
 
@@ -25,23 +24,25 @@
 <!-- #SEARCH BAR AND LOGO HERE -->
 
   
-
+<div uk-sticky>  
 <div id="frosted-glass" 
-  <div uk-sticky>  
     <nav class="navbar navbar-light bg-light">
       <img src="./assets/images/covertraxlogo.svg" alt="CoverTrax logo">
+        <div class="arrows">
+        <button id="back">Go Back</button>
+        <button id="forward">Go Forward</button>
+      <button id="reset"><a href="https://cors-anywhere.herokuapp.com/corsdemo" target="_blank" >Cors</a></button> 
+          
+      
+        </div>
         <div class="container-fluid">
           <form class="uk-search uk-search-default d-flex">
-            <!-- <span class="uk-search-icon-flip" uk-search-icon></span>   -->
+            <span class="uk-search-icon-flip" uk-search-icon></span>  
             <input class="uk-search-input" type="search" placeholder="Search" aria-label="Search" 
             autocomplete= "off" id="search-bar">
             <div id="suggestion-box" class="suggestions"></div>
-            <button class="btn btn-outline-success" type="submit" id="search-submit">Search</button>
+            <button id="search-submit"><img src="" alt=""></button>
           </form>
-                <div class="arrows">
-        <button id="back">Go Back</button>
-        <button id="forward">Go Forward</button>
-      </div>
         </div>
       </nav>
   </div>
@@ -49,44 +50,50 @@
 </header>
 
 
+
+<div class="center">
   <div class="uk-card uk-card-default uk-card-media-top ">
-      <main id="ot-container">#ORIGINAL SONG CONTENT HERE
+      <main id="ot-container">
       <div id="ot-body">
+        <div class="uk-panel">  
         <div id="ot-art-container">
-          <img src="#" id="ot-album-art" alt="">
+          <img class="uk-align-left uk-margin-remove-adjacent" src="#" id="ot-album-art" alt="">
         </div>
         <h2 id="ot-song-title"></h2>
         <p id="ot-artist"></p>
         <a href="#" id="ot-song-link"></a>
       </div>
       </main>
-        <div id="ot-lyrics-container">#LYRICS HERE
+        <div id="ot-lyrics-container">
           <div id="lyrics-button" uk-modal>
               <div class="uk-modal-dialog uk-modal-body" id="ot-lyrics">HERE ARE SOME LYRICS
               <button class="uk-modal-close" type="button">Close</button>
               </div>
           </div>
-        <button uk-toggle="target: #lyrics-button"class="uk-button uk-button-primary">Lyrics</button>
-      </div>
+          <button uk-toggle="target: #lyrics-button"class="uk-button uk-button-primary" style="width:auto">Lyrics</button>
+        </div>
     </div>      
+  </div>
+</div>
 
 
 
 
 
+  </div>
 
+  <div uk-grid>
+    <section id="cc-container">
 
-
-
-    <section id="cc-container">#COVER CARDS GO HERE
-        
+    
     </section>
+  </div>
+    
       
 
     
 
 
-   
     
 
 
@@ -98,9 +105,41 @@
     
 
     <script src="./assets/JS/officialAPIcalls.js"></script>
-
+    <script src="./assets/JS/searchHistory.js"></script>
     <script src="./assets/JS/userInput.js"></script>
     <script src="./assets/JS/cardPopulation.js"></script>
     <!-- <script src="./assets/JS/apiFetch.js"></script> -->
+  
+    <footer class="footer">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-6">
+                  <img id="spotify" src="assets/images/Spotify_Logo_RGB_Green.png" alt="Logo 1">
+              </div>
+              <div class="col-md-6">
+                  <img id="cover-trax" src="assets/images/covertraxlogo.svg" alt="Logo 2">
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-6">
+                  <h2>"Thank you for choosing CoverTrax!</h2><h4>We're thrilled that you've entrusted us with a web application that enables our users to search any song by name and be presented with the original recording of the song, the lyrics of the song, and several different covers of that song along with links to the Spotify page for that song. Every click and interaction means the world to us.<br>
+
+                    <br> At CoverTrax, we poured our hearts and souls into crafting this web application with love, aiming to provide you with a seamless and enjoyable experience. We hope it brings value to your life or work in ways both big and small.<br>
+                    
+                    <br>Your support means everything to us. If you ever have feedback, suggestions, or just want to say hello, we're here for you. Reach out to us anytime in Slack.<br>
+                    
+                    <br>Once again, thank you for being a part of our journey. Here's to many more wonderful experiences together!<br>
+                    
+                    With love and gratitude,
+                    CoverTrax"</h4> 
+              </div>
+              <div class="col-md-6">
+                <p> Powerd by Spotify &copy; 2024 CoverTrax. All rights reserved.</p>
+              </div>
+          </div>
+      </div>
+  </footer>
+
   </body>
+  
 </html>

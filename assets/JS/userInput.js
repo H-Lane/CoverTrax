@@ -1,3 +1,4 @@
+//get history which include the previous search, all the searches done in the current session in order and all searches done on the website with no duplicates
 let searchLibrary = JSON.parse(localStorage.getItem('songSearchHistory')) || [];
 let searchIndex = JSON.parse(sessionStorage.getItem('searchIndex'));
 let allSearches = JSON.parse(sessionStorage.getItem('allSearches')) ||[];
@@ -13,9 +14,10 @@ let searchHistory = document.getElementById('search-history');
 // let lastLoaded = JSON.parse(songsOnLoad);
 //lastSearch = JSON.parse(lastSearch);
 
+
 window.addEventListener('load',function(){
 
-
+//load most recent search on page opening/reload
     if(String(lastSearch) !== 'null'){ 
         setUrl(lastSearch);
         getTokens(lastSearch);
@@ -24,11 +26,13 @@ window.addEventListener('load',function(){
         getTokens('search for a song');
     }
 
+    //listen for user typing in song input field
     document.getElementById('search-bar').addEventListener('keyup',function(){
         // alert('there was a key up');
          let searchText = this.value;
          let suggestionBox = document.getElementById('suggestion-box');
          suggestionBox.innerHTML = '';
+         //have spotify give the user live search suggestions updated after every keyup
          if(searchText.length>0){
      
              getTokensSS(searchText);
@@ -40,20 +44,27 @@ window.addEventListener('load',function(){
      
      });
       
+     //event listener added to the search submit bar on the webpage
     searchSubmit.addEventListener('click',function(event){
     
     //event.preventDefault();
     let songName = document.getElementById('search-bar').value;
     //searchLibrary.push(songName);
+    
+    //send the song request to the spotify api
     getTokens(songName);
+    //update the page url to display the search query
     changeUrl(songName);
     
     lastSearch = songName;
     allSearches.push(songName);
     searchIndex = allSearches.length;
+    //update the last storage for the last searched song, the list of all searches in the session in order and the list of all previous searches with no duplicates
     localStorage.setItem('lastSearch',JSON.stringify(lastSearch));
     sessionStorage.setItem('searchIndex',JSON.stringify(searchIndex));
     sessionStorage.setItem('allSearches',JSON.stringify(allSearches));
+
+    //run test to ensure no duplicated song searches and then load song search to localstorage if search is not a duplicate
     songName = songName.trim().toLowerCase();
 
     if(!songName) return;
@@ -73,8 +84,10 @@ window.addEventListener('load',function(){
     
     //  });
     
+    //listener for user clicking on the back arrow
      back.addEventListener('click',function(event){
         
+        //use the stored session index value to go back one song
         if(searchIndex > 1){
             searchIndex = searchIndex - 1;
             sessionStorage.setItem('searchIndex',JSON.stringify(searchIndex));
@@ -86,10 +99,13 @@ window.addEventListener('load',function(){
             location.reload();
         }
         else{
+            //display if you get to the first search of the session
             alert('Cannot go any further back!');
         }
     });
+    //listen for a click on the forward button
     forward.addEventListener('click',function(event){
+        //use the stored session index value to go forward one song
         if(searchIndex < allSearches.length){
             searchIndex = searchIndex + 1;
             sessionStorage.setItem('searchIndex',JSON.stringify(searchIndex));
@@ -100,12 +116,14 @@ window.addEventListener('load',function(){
             location.reload();
         }
         else{
+            //display if you get to the most recent search in the session
             alert('cannot go any further forward');
         }
     });
+    //listen for click on the history button
     searchHistory.addEventListener('click',function(event){
 
-        //alert('event');
+        //call function to do a new new search using the name of the history song that was clicked on by the user
         populateHistory(searchLibrary);
 
     });
@@ -119,6 +137,7 @@ window.addEventListener('load',function(){
 //     localStorage.setItem('lastSearch',JSON.stringify(lastSearch));
 // });
 
+//update the page url on a search
 function changeUrl(songName){
     let name = songName.split(' ');
     // console.log(name);
@@ -146,6 +165,7 @@ function changeUrl(songName){
     //history.replaceState({path:newUrl},'',newUrl);
     //return(searchName);
 }
+//maintain page url on page reload
 function setUrl(songName){
     let name = songName.split(' ');
     // console.log(name);

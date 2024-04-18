@@ -2,10 +2,13 @@
 const clientId = "691b00a249f243f7b35fa7db79bf6ddd";
 const clientSecret = "98b920a1452a4878a9e8879811a51515";
 
-let userSongChoice = "roar";
+//let userSongChoice = "roar";
 // let singer = null;
 
+//function gets the spotify api key using the client id and client secret
+//this function is first api call and resives the song the user searched for
 function getTokens(songName) {
+
   //use client id and client secret to get api key
   const encodedCredentials = btoa(`${clientId}:${clientSecret}`);
   fetch("https://accounts.spotify.com/api/token", {
@@ -23,6 +26,7 @@ function getTokens(songName) {
       // console.log(data);
 
       //data is the spotify api key
+
       //song name is the song name input from the user
       this.getSong(data, songName);
     })
@@ -31,6 +35,7 @@ function getTokens(songName) {
     });
 }
 function getSong(tokens, songName) {
+
   //turn user text input into an array and replace spaces with underscores
   let name = songName.split(" ");
   // console.log(name);
@@ -58,6 +63,7 @@ function getSong(tokens, songName) {
   //songArray will hold 10 songs. the 1st will be the original version and the rest will be covers of the song
   // let songsArray = [];
 
+  //fetch request to get song user searched for
   fetch(song, {
     method: "GET",
     headers: {
@@ -76,21 +82,15 @@ function getSong(tokens, songName) {
       //     return;
       // }
       //else{
+        //give data to function so that cards can recieve the data and be added to the web page
       populateOtCard(data);
       populateCoverCards(data);
+
+      //get song ISRC code that is unique to every song
       let songISRC = data.tracks.items[0].external_ids.isrc;
+
+      //make an api call to musixMatch to get the lyrics to the first song
       this.getLyrics(songISRC);
-
-      // songName = songName.trim().toLowerCase();
-
-      // //if(!songName) return;
-
-      // if(!searchLibrary.includes(songName)){
-      //     searchLibrary.push(songName);
-      // }
-      // localStorage.setItem('songSearchHistory',JSON.stringify(searchLibrary));
-      // localStorage.setItem('lastSearch',JSON.stringify(songName));
-      //}
     })
     .catch(function (error) {
       console.error("error:", error);
@@ -98,6 +98,8 @@ function getSong(tokens, songName) {
   // console.log(data.tracks.items);
   //console.log(songsArray);
 }
+
+//function to get the lyrics of the song take the songs ISRC to find the right song in musixmatch
 function getLyrics(songISRC) {
   //for(let i = 0; i < songsArray.length; i++){ old for loop
 
@@ -108,6 +110,7 @@ function getLyrics(songISRC) {
   // const musixISRC = String(songsArray[0].songISRC);
   let musixSearch = musixmatchRUL + songISRC + musixMatchAPI;
 
+  //first fetch request is to get the meta data of the song housed in musix match. 
   fetch(musixSearch, {
     method: "GET",
   })
@@ -115,6 +118,7 @@ function getLyrics(songISRC) {
       return response.json();
     })
     .then(function (data) {
+      //this is the unique id that musixmatch created to find a songs lyrics. this was what the first musixmatch api fetch request result
       trackID = data.message.body.track.track_id;
       // console.log(data.message.body.track.track_id);
 
@@ -123,6 +127,7 @@ function getLyrics(songISRC) {
 
       musixSearch = musixmatchRUL + trackID + musixMatchAPI;
 
+      // second fetch request gets the lyrics for the song from the musixmatch api and the song id code retrieved by the first musixmatch fetch request
       fetch(musixSearch, {
         method: "GET",
       })
@@ -153,7 +158,7 @@ function getLyrics(songISRC) {
   //}
 }
 
-//search suggestions functions
+//search suggestions api function functions
 function getTokensSS(songName) {
   //use client id and client secret to get api key
   const encodedCredentials = btoa(`${clientId}:${clientSecret}`);
@@ -220,7 +225,7 @@ function getSongSS(tokens, songName) {
       for (let i = 0; i < data.tracks.items.length; i++) {
         songSuggestions.push(data.tracks.items[i].name);
       }
-
+      //function is adding divs for the results of the search suggestions provided by the spotify api
       songSuggestions.forEach(function (suggested) {
         let div = document.createElement("div");
         div.innerHTML = suggested;

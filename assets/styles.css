@@ -88,6 +88,7 @@
   font-weight: bold;
 }
 
+/* styling for the suggestions div created by the spotify api */
 .suggestions {
   position: absolute;
   width: 50%px;
@@ -104,6 +105,7 @@
 .suggestions div:hover {
   background-color: #f0f0f0;
 }
+/* styling for the forward, back and history arrows */
 #forward,
 #back, #search-history {
   color: white;
